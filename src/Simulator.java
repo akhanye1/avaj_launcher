@@ -13,15 +13,15 @@ import java.lang.Exception;
 import java.util.*;
 
 public class Simulator {
-	private static boolean lineOkay (String line, int lineCounter,
+	private static void lineOkay (String line, int lineCounter,
 									List<Flyable> flyables,
-									AircraftFactory aircraftfactory) {
+									AircraftFactory aircraftfactory) throws Exception{
 		String splits[] = line.split(" ");
 		if (lineCounter == 0) {
 			if (splits.length == 1)
 				aircraftfactory.setCounter(Integer.parseInt(splits[0]));
 			else
-				return (false);
+				throw new Exception("Invalid file type");
 		}
 		else if (lineCounter > 0) {
 			if (splits.length == 5) {
@@ -30,12 +30,12 @@ public class Simulator {
 				int		longitude = Integer.parseInt(splits[2]);
 				int		latitude = Integer.parseInt(splits[3]);
 				int		height = Integer.parseInt(splits[4]);
-				flyables.add(aircraftfactory.newAircraft(type, name, longitude, latitude, height));
+				flyables.add(aircraftfactory.newAircraft(type, name,
+							longitude, latitude, height));
 			}
 			else
-				return (false);
+				throw new Exception("Invali file type");
 		}
-		return (true);
 	}
 
 	public static void main(String[] args) {
@@ -52,8 +52,7 @@ public class Simulator {
 			BufferedReader br = new BufferedReader(new FileReader(args[0]));
 			lineCounter = 0;
 			while ((line = br.readLine()) != null) {
-				if (!(lineOkay(line, lineCounter, flyables, aircraftfactory)))
-					throw new Exception("Invalid file type");
+				lineOkay(line, lineCounter, flyables, aircraftfactory);
 				lineCounter++;
 			}
 		}

@@ -9,21 +9,30 @@ public class AircraftFactory {
 	private	int			counter;
 
 	public Flyable newAircraft(String type, String name, int longitude,
-			int latitude, int height) {
+			int latitude, int height) throws Exception{
+		Flyable			temp;
+		WeatherTower	weathertower = new WeatherTower();
+
+		if (height > 100)
+			throw new Exception("Height exceed maximum height allowed");
 		switch (type) {
 			case "Baloon":
 				coordinates = new Coordinates(longitude, latitude, height);
-				return (new Baloon(name, coordinates));	
+				temp = new Baloon(name, coordinates);
+				break;	
 			case "JetPlane":
 				coordinates = new Coordinates(longitude, latitude, height);
-				return (new JetPlane(name, coordinates));	
+				temp = new JetPlane(name, coordinates);
+				break;
 			case "Helicopter": 
 				coordinates = new Coordinates(longitude, latitude, height);
-				return (new Helicopter(name, coordinates));	
+				temp = new Helicopter(name, coordinates);
+				break;
 			default:
-				coordinates = new Coordinates(longitude, latitude, height);
-				return (new Helicopter(name, coordinates));	
+				throw new Exception("Aircraft type not recorgnised");
 		}
+		temp.registerTower(weathertower);
+		return (temp);
 	}
 
 	public void			setCounter(int counter) { this.counter = counter; }
