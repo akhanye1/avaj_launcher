@@ -16,7 +16,8 @@ public class Simulator {
 	private static void lineOkay (String line, int lineCounter,
 									List<Flyable> flyables,
 									AircraftFactory aircraftfactory) throws Exception{
-		String splits[] = line.split(" ");
+		String 	splits[] = line.split(" ");
+		Flyable	tempFlight;
 		if (lineCounter == 0) {
 			if (splits.length == 1)
 				aircraftfactory.setCounter(Integer.parseInt(splits[0]));
@@ -30,8 +31,9 @@ public class Simulator {
 				int		longitude = Integer.parseInt(splits[2]);
 				int		latitude = Integer.parseInt(splits[3]);
 				int		height = Integer.parseInt(splits[4]);
-				flyables.add(aircraftfactory.newAircraft(type, name,
-							longitude, latitude, height));
+				if ((tempFlight = aircraftfactory.newAircraft(type, name, longitude, 
+							latitude, height)) != null)
+					flyables.add(tempFlight);
 			}
 			else
 				throw new Exception("Invali file type");

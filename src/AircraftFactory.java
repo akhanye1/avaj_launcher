@@ -13,8 +13,10 @@ public class AircraftFactory {
 		Flyable			temp;
 		WeatherTower	weathertower = new WeatherTower();
 
-		if (height > 100)
-			throw new Exception("Height exceed maximum height allowed");
+		if (height > 100) {
+			System.out.println(name + " exceeds maximum height of 100 - Tower rejects assitance");
+			return (null);
+		}
 		switch (type) {
 			case "Baloon":
 				coordinates = new Coordinates(longitude, latitude, height);

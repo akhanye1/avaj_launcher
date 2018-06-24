@@ -4,15 +4,18 @@
 
 package	com.aircraft.simulator;
 
+import	java.util.List;
+import	java.util.ArrayList;
+
 public class Tower {
-	private Flyable	observers;
+	private List<Flyable>	observers = new ArrayList<>();
 
-	public void		register(Flyable flyable) {
+	public void				register(Flyable flyable) {
 	}
 
-	public void 	unregister(Flyable flyable) {
+	public void 			unregister(Flyable flyable) {
 	}
 
-	protected void	conditionsChanged() {
+	protected void			conditionsChanged() {
 	}
 }
