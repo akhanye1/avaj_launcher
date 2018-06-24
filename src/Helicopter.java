@@ -5,13 +5,32 @@
 package com.aircraft.simulator;
 
 public class Helicopter extends Aircraft implements Flyable {
-	private WeatherTower weathertower;
+	private WeatherTower weathertower = null;
 
 	Helicopter(String name, Coordinates coordinates) {
 		super(name, coordinates);
 	}
 
 	public void updateConditions() {
+		if (this.weathertower != null) {
+			switch (this.weathertower.getWeather(this.coordinates)) {
+				case "SUN":
+					this.coordinates.setLongitude(10);
+					this.coordinates.setHeight(2);
+					break;
+				case "RAIN":
+					this.coordinates.setLongitude(5);
+					break;
+				case "FOG":
+					this.coordinates.setLongitude(1);
+					break;
+				case "SNOW":
+					this.coordinates.setHeight(-12);	
+					break;
+			}
+			if (this.coordinates.getHeight() == 0)
+				weathertower.unregister(this);
+		}
 	}
 
 	public void registerTower(WeatherTower weathertower) {

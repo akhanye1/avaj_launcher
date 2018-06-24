@@ -19,10 +19,6 @@ public class Tower {
 			return ("JetPlane");
 	}
 
-	/*private Aircraft		getAircraft(Flyable flyable) {
-		return ((Aircraft)flyable);
-	}*/
-
 	public void				register(Flyable flyable) {
 		Aircraft aircraft = (Aircraft)flyable; 
 
@@ -33,8 +29,22 @@ public class Tower {
 	}
 
 	public void 			unregister(Flyable flyable) {
+		Aircraft aircraft = (Aircraft)flyable;
+
+		for (Flyable iterTemp : observers) {
+			Aircraft iter = (Aircraft)iterTemp;
+			if (iter.id == aircraft.id) {
+				System.out.print("Tower : " + getTypeName(iterTemp) + " #");
+				System.out.print(iter.name + "(" + iter.id + ") ");
+				System.out.print(" I cannot say I will miss you");
+				System.out.println(", you are the weakest link goodbye");
+				observers.remove(iter);
+				break ;
+			}
+		}
 	}
 
 	protected void			conditionsChanged() {
+
 	}
 }

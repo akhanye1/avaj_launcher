@@ -36,7 +36,7 @@ public class Simulator {
 					tempFlight.registerTower(weathertower);
 			}
 			else
-				throw new Exception("Invali file type");
+				throw new Exception("Invalid file type");
 		}
 	}
 
