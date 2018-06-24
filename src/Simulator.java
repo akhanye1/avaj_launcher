@@ -14,8 +14,8 @@ import java.util.*;
 
 public class Simulator {
 	private static void lineOkay (String line, int lineCounter,
-									List<Flyable> flyables,
-									AircraftFactory aircraftfactory) throws Exception{
+									AircraftFactory aircraftfactory,
+									WeatherTower weathertower) throws Exception{
 		String 	splits[] = line.split(" ");
 		Flyable	tempFlight;
 		if (lineCounter == 0) {
@@ -33,7 +33,7 @@ public class Simulator {
 				int		height = Integer.parseInt(splits[4]);
 				if ((tempFlight = aircraftfactory.newAircraft(type, name, longitude, 
 							latitude, height)) != null)
-					flyables.add(tempFlight);
+					tempFlight.registerTower(weathertower);
 			}
 			else
 				throw new Exception("Invali file type");
@@ -42,9 +42,9 @@ public class Simulator {
 
 	public static void main(String[] args) {
 		AircraftFactory aircraftfactory = new AircraftFactory();
-		List<Flyable>	flyables = new ArrayList<>();
 		String			line = null;
 		int				lineCounter;
+		WeatherTower	weathertower = new WeatherTower();
 
 		if (args.length != 1) {
 			System.out.println("Usage: java com.aircraft.simulator.Simulator <filename>");
@@ -54,7 +54,7 @@ public class Simulator {
 			BufferedReader br = new BufferedReader(new FileReader(args[0]));
 			lineCounter = 0;
 			while ((line = br.readLine()) != null) {
-				lineOkay(line, lineCounter, flyables, aircraftfactory);
+				lineOkay(line, lineCounter, aircraftfactory, weathertower);
 				lineCounter++;
 			}
 		}

@@ -11,11 +11,9 @@ public class AircraftFactory {
 	public Flyable newAircraft(String type, String name, int longitude,
 			int latitude, int height) throws Exception{
 		Flyable			temp;
-		WeatherTower	weathertower = new WeatherTower();
 
-		if (height > 100) {
-			System.out.println(name + " exceeds maximum height of 100 - Tower rejects assitance");
-			return (null);
+		if (height < 0 || height > 100) {
+			throw new Exception("Wether you are superman or a spaceship, return to sender.");
 		}
 		switch (type) {
 			case "Baloon":
@@ -33,7 +31,6 @@ public class AircraftFactory {
 			default:
 				throw new Exception("Aircraft type not recorgnised");
 		}
-		temp.registerTower(weathertower);
 		return (temp);
 	}
 
