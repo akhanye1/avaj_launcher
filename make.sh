@@ -1,2 +1,2 @@
 rm -rf com
-javac src/*.java -d .
+javac -Werror src/*.java -d .

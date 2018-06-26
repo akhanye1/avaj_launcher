@@ -5,7 +5,6 @@
 package com.aircraft.simulator;
 
 public class AircraftFactory {
-	private	Coordinates coordinates;
 	private	int			counter;
 
 	public Flyable newAircraft(String type, String name, int longitude,
@@ -15,6 +14,7 @@ public class AircraftFactory {
 		if (height < 0 || height > 100) {
 			throw new Exception("Wether you are superman or a spaceship, return to sender.");
 		}
+		Coordinates coordinates;
 		switch (type) {
 			case "Baloon":
 				coordinates = new Coordinates(longitude, latitude, height);
