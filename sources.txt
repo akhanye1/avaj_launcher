@@ -1,3 +1,12 @@
-src/Coordinates.java
 src/Aircraft.java
+src/AircraftFactory.java
+src/Baloon.java
+src/Coordinates.java
+src/Flyable.java
+src/Helicopter.java
+src/JetPlane.java
 src/Simulator.java
+src/Tower.java
+src/WeatherProvider.java
+src/WeatherTower.java
+src/Writer.java
