@@ -15,14 +15,15 @@ import java.util.*;
 public class Simulator {
 	private static void lineOkay (String line, int lineCounter,
 									AircraftFactory aircraftfactory,
-									WeatherTower weathertower) throws Exception{
+									List<Flyable> flyables) throws Exception{
 		String 	splits[] = line.split(" ");
 		Flyable	tempFlight;
+
 		if (lineCounter == 0) {
 			if (splits.length == 1)
 				aircraftfactory.setCounter(Integer.parseInt(splits[0]));
 			else
-				throw new Exception("Invalid file type");
+				throw new Exception("Invalid file type, does JAVA have segfaults?");
 		}
 		else if (lineCounter > 0) {
 			if (splits.length == 5) {
@@ -31,12 +32,14 @@ public class Simulator {
 				int		longitude = Integer.parseInt(splits[2]);
 				int		latitude = Integer.parseInt(splits[3]);
 				int		height = Integer.parseInt(splits[4]);
+				if (longitude < 0 || latitude < 0)
+					throw new Exception("We really don't accept aliens here.");
 				if ((tempFlight = aircraftfactory.newAircraft(type, name, longitude, 
 							latitude, height)) != null)
-					tempFlight.registerTower(weathertower);
+					flyables.add(tempFlight);
 			}
 			else
-				throw new Exception("Invalid file type");
+				throw new Exception("Invalid file type, does JAVA have segfaults?");
 		}
 	}
 
@@ -45,6 +48,8 @@ public class Simulator {
 		String			line = null;
 		int				lineCounter;
 		WeatherTower	weathertower = new WeatherTower();
+		List<Flyable>	flyables = new ArrayList<>();
+		Writer			writer = new Writer();
 
 		if (args.length != 1) {
 			System.out.println("Usage: java com.aircraft.simulator.Simulator <filename>");
@@ -54,8 +59,15 @@ public class Simulator {
 			BufferedReader br = new BufferedReader(new FileReader(args[0]));
 			lineCounter = 0;
 			while ((line = br.readLine()) != null) {
-				lineOkay(line, lineCounter, aircraftfactory, weathertower);
+				lineOkay(line, lineCounter, aircraftfactory, flyables);
 				lineCounter++;
+			}
+			for (Flyable tempflyable : flyables) {
+				tempflyable.registerTower(weathertower);
+			}
+			for (int i = 0; i < aircraftfactory.getCounter(); i++) {
+				weathertower.changeWeather();
+				weathertower.conditionsChanged();
 			}
 		}
 		catch (FileNotFoundException err) {
@@ -69,6 +81,9 @@ public class Simulator {
 		}
 		catch (Exception err) {
 			System.out.println("Exception : " + err.getMessage());
+		}
+		finally {
+			Writer.close();
 		}
 	}
 }

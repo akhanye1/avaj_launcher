@@ -5,10 +5,13 @@
 package com.aircraft.simulator;
 
 public class WeatherTower extends Tower{
+	private WeatherProvider weatherprovider = WeatherProvider.getProvider();
+
 	public String	getWeather(Coordinates coordinates) {
-		return "";
+		return weatherprovider.getCurrentWeather(coordinates);
 	}
 
-	public void		chageWeather() {
+	void			changeWeather() {
+		weatherprovider = WeatherProvider.getProvider();
 	}
 }
