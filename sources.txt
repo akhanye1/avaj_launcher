@@ -1,7 +1,7 @@
 ./src/Aircraft.java
 ./src/AircraftFactory.java
 ./src/Baloon.java
-./src/Coordinates/Coordinates.java
+./src/Coordinates.java
 ./src/Flyable.java
 ./src/Helicopter.java
 ./src/JetPlane.java

@@ -4,8 +4,6 @@
 
 package src;
 
-import src.Coordinates;
-
 public class Aircraft {
 	protected long			id;
 	protected String		name;

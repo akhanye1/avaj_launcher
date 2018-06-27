@@ -20,8 +20,11 @@ public class Simulator {
 		Flyable	tempFlight;
 
 		if (lineCounter == 0) {
-			if (splits.length == 1)
+			if (splits.length == 1) {
 				aircraftfactory.setCounter(Integer.parseInt(splits[0]));
+				if (aircraftfactory.getCounter() <= 0)
+					throw new Exception("Cannot run 0 or less simulations");
+			}
 			else
 				throw new Exception("Invalid file type, does JAVA have segfaults?");
 		}
@@ -59,8 +62,10 @@ public class Simulator {
 			BufferedReader br = new BufferedReader(new FileReader(args[0]));
 			lineCounter = 0;
 			while ((line = br.readLine()) != null) {
-				lineOkay(line, lineCounter, aircraftfactory, flyables);
-				lineCounter++;
+				if (line.length() > 0) {
+					lineOkay(line, lineCounter, aircraftfactory, flyables);
+					lineCounter++;
+				}
 			}
 			for (Flyable tempflyable : flyables) {
 				tempflyable.registerTower(weathertower);

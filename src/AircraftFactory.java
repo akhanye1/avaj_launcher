@@ -11,8 +11,12 @@ public class AircraftFactory {
 			int latitude, int height) throws Exception{
 		Flyable			temp;
 
-		if (height < 0 || height > 100) {
+		if (height < 0) {
 			throw new Exception("Wether you are superman or a spaceship, return to sender.");
+		} 
+		else if (height > 100) {
+			Writer.writeln(name + " is beyond the threshold, height is resetted to 100");
+			height = 100;
 		}
 		Coordinates coordinates;
 		switch (type) {
