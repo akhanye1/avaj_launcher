@@ -2,7 +2,9 @@
  * Created by Katleho Khanye (akhanye)
  * */
 
-package com.aircraft.simulator;
+package src;
+
+import src.Coordinates;
 
 public class Aircraft {
 	protected long			id;

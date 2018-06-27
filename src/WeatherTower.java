@@ -2,7 +2,7 @@
  * Created by Katleho Khanye (akhanye)
  * */
 
-package com.aircraft.simulator;
+package src;
 
 public class WeatherTower extends Tower{
 	private WeatherProvider weatherprovider = WeatherProvider.getProvider();

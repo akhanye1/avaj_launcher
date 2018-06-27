@@ -3,4 +3,5 @@ com/*
 /com
 *.swp
 *.swo
+*.class
 simulation.txt

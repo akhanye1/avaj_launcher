@@ -2,7 +2,7 @@
  * Create by Katleho Khanye (akhanye)
  * */
 
-package com.aircraft.simulator;
+package src;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

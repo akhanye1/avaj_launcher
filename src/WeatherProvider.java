@@ -2,7 +2,7 @@
  * Created by Katleho Khanye (akhanye)
  * */
 
-package com.aircraft.simulator;
+package src;
 
 import java.util.Random;
 import java.util.*;

@@ -2,7 +2,7 @@
  * Created by Katleho Khanye (akhanye)
  * */
 
-package com.aircraft.simulator;
+package src;
 
 public interface Flyable {
 	public void	updateConditions();

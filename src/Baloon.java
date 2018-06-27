@@ -2,7 +2,7 @@
  * Created by Katleho Khanye (akhanye)
  * */
 
-package com.aircraft.simulator;
+package src;
 
 public class Baloon extends Aircraft implements Flyable {
 	private WeatherTower weathertower = null;

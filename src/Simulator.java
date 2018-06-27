@@ -3,7 +3,7 @@
  *
  * */
 
-package com.aircraft.simulator;
+package src;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
