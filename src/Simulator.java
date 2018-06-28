@@ -86,6 +86,9 @@ public class Simulator {
 		catch (NumberFormatException err) {
 			System.out.println("Error convert to number : " + err.getMessage());
 		}
+		catch (AircraftException err) {
+			System.out.println("Aircraft Exception : " + err.getMessage());
+		}
 		catch (Exception err) {
 			System.out.println("Exception : " + err.getMessage());
 		}

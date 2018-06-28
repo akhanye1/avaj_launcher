@@ -8,11 +8,11 @@ public class AircraftFactory {
 	private	int			counter;
 
 	public Flyable newAircraft(String type, String name, int longitude,
-			int latitude, int height) throws Exception{
+			int latitude, int height) throws AircraftException{
 		Flyable			temp;
 
 		if (height < 0) {
-			throw new Exception("Wether you are superman or a spaceship, return to sender.");
+			throw new AircraftException("Wether you are superman or a spaceship, return to sender.");
 		} 
 		else if (height > 100) {
 			Writer.writeln(name + " is beyond the threshold, height is resetted to 100");
@@ -33,7 +33,7 @@ public class AircraftFactory {
 				temp = new Helicopter(name, coordinates);
 				break;
 			default:
-				throw new Exception("Aircraft type not recorgnised");
+				throw new AircraftException("Aircraft type not recorgnised");
 		}
 		return (temp);
 	}
