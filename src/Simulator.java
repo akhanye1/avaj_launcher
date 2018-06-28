@@ -67,6 +67,8 @@ public class Simulator {
 					lineCounter++;
 				}
 			}
+			if (lineCounter == 0 || flyables.size() == 0)
+				throw new Exception("Empty file");
 			for (Flyable tempflyable : flyables) {
 				tempflyable.registerTower(weathertower);
 			}
